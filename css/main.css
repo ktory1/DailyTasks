@@ -1,3 +1,16 @@
+body{
+    background-color: cornflowerblue;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .bgImage{
     position: absolute;
     top: 0;
@@ -5,4 +18,6 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    animation: fadeIn 1s linear;
 }
+
