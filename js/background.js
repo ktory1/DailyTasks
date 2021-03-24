@@ -6,9 +6,9 @@ function paintBackground(imgNumber) {
     const image = new Image();
     image.src = `images/${imgNumber}.jpg`;
     image.classList.add("bgImage");
-    body.prepend(image);
+    body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),
+     url('${image.src}')`;
 }
-
 function genRandomNum(){
     return Math.ceil(Math.random() * IMG_COUNT);
 }

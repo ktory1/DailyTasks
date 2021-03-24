@@ -50,6 +50,7 @@ function handleGeoSuccess(position){
     paintWeather(latitude, longitude);
 }
 function handleGeoError(){
+    weather.innerText = "Unable to access location";
     console.log("Can't access geolocation");
 }
 

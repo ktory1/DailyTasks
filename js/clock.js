@@ -1,6 +1,6 @@
 const clockContainer = document.querySelector(".js-clock"),
-    clockTime = clockContainer.querySelector("h1"),
-    clockDate = clockContainer.querySelector("h3");
+    clockTime = clockContainer.querySelector(".js-clock .clock"),
+    clockDate = clockContainer.querySelector(".js-clock .date_text");
 
 const daysOfTheWeek = [ "Sun", "Mon", "Tue", "Wed", "Thu",
 "Fri", "Sat"];
@@ -8,7 +8,7 @@ const daysOfTheWeek = [ "Sun", "Mon", "Tue", "Wed", "Thu",
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-const timeOfDay = ["AM", "PM"];
+// const timeOfDay = ["AM", "PM"];
 
 
 function getTime() {
@@ -25,7 +25,8 @@ function getTime() {
 
     clockTime.innerText = `${hours < 10 ? `0${hours}` : hours}:${
         minutes < 10 ? `0${minutes}` : minutes}:${
-        seconds < 10 ? `0${seconds}` : seconds} ${timeOfDay[Math.floor(rawHours/12)]}`;
+        seconds < 10 ? `0${seconds}` : seconds}`;
+        // ${timeOfDay[Math.floor(rawHours/12)]}
     clockDate.innerText = `${dow}, ${month} ${day}, ${year}`;
 }
 

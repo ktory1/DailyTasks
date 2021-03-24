@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <title>Something</title>
+    <title>Daily Tasks</title>
     <meta charset="utf-8"/>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Thomas Kwun" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
   </head>
+
   <body>
-    <div class="js-clock">
-        <h1>00:00:00</h1>
-        <h3></h3>
+    <div class="weather">
+      <spanc class="js-weather"></spanc>
     </div>
-    <form class="js-greetingsForm form">
-      <input type="text" placeholder="What is your name?"/>
-    </form>
-    <h4 class="js-greetings greetings"></h4>
-    <form class="js-toDoForm">
-      <input type="text" placeholder="Write a task to do"/>
-    </form>
-    <ul class="js-toDoList"></ul>
-    <spanc class="js-weather"></spanc>
-    <script src="js/clock.js"></script>
-    <script src="js/greeting.js"></script>
-    <script src="js/todo.js"></script>
+
+    <section class="center">
+      <section>
+        <div class="js-clock">
+          <div>
+            <h1 class="clock">00:00:00</h1>
+          </div>
+          <div class="date">
+              <h4 class="date_text"></h4>
+          </div>
+        </div>
+        
+        <div class="name">
+          <form class="js-greetingsForm form">
+            <input class="name_input" type="text" placeholder="Please tell me your name"/>
+          </form>
+          <h4 class="js-greetings greetings"></h4>
+        </div>
+      </section>
+      
+      <div>
+        <form class="js-toDoForm">
+          <input class="toDo_Input" type="text" placeholder="What do you want to focus on today?"/>
+        </form>
+        <ul class="js-toDoList"></ul>
+      </div>
+    </section>
+
+
     <script src="js/background.js"></script>
     <script src="js/config.js"></script>
     <script src="js/weather.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/greeting.js"></script>
+    <script src="js/todo.js"></script>
+
   </body>
+
 </html>
