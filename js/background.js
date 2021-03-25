@@ -41,7 +41,7 @@ function paintBackground(imageUrl) {
     const image = new Image();
     image.src = imageUrl;
     image.classList.add("bgImage");
-    body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),
+    body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)),
      url('${image.src}')`;
 }
 
