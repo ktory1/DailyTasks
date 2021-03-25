@@ -26,20 +26,16 @@ function paintGreeting(text){
     nameForm.classList.remove(SHOWING_CN);
     greeting.classList.add(SHOWING_CN);
     const time = new Date().getHours();
-    console.log(time);
     let greetingText = "";
     switch(true) {
         case time < 6:
             greetingText = GREETINGS[0];
-            console.log(time);
             break;
         case time < 12:
             greetingText = GREETINGS[1];
-            console.log(time);
             break;
         case time < 18:
             greetingText = GREETINGS[2];
-            console.log(time);
             break;
         case time <= 23:
             greetingText = GREETINGS[3];
