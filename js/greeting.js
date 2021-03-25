@@ -3,7 +3,8 @@ const nameForm = document.querySelector(".js-greetingsForm"),
     greeting = document.querySelector(".js-greetings");
 
 const USER_LS = "currentUser",
-    SHOWING_CN = "showing";
+    SHOWING_CN = "showing",
+    GREETINGS = ["It's a beautiful night", "Good morning", "Good afternoon", "Good Evening"];
 
 function saveName(text){
     localStorage.setItem(USER_LS, text);
@@ -24,7 +25,31 @@ function askForName() {
 function paintGreeting(text){
     nameForm.classList.remove(SHOWING_CN);
     greeting.classList.add(SHOWING_CN);
-    greeting.innerText = `Hello, ${text}`;
+    const time = new Date().getHours();
+    console.log(time);
+    let greetingText = "";
+    switch(true) {
+        case time < 6:
+            greetingText = GREETINGS[0];
+            console.log(time);
+            break;
+        case time < 12:
+            greetingText = GREETINGS[1];
+            console.log(time);
+            break;
+        case time < 18:
+            greetingText = GREETINGS[2];
+            console.log(time);
+            break;
+        case time <= 23:
+            greetingText = GREETINGS[3];
+            break;
+        default:
+            greetingText = "Hello";
+            break;
+    }
+
+    greeting.innerText = `${greetingText}, ${text}`;
 }
 
 function loadName() {
