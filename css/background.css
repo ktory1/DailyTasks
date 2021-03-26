@@ -1,0 +1,37 @@
+.bgImage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: fadeIn 1s linear;
+}
+
+#photoCred {
+    position: fixed;
+    font-style: italic;
+    font-size: 12px;
+    bottom: 2%;
+    left: 1.5%;
+    opacity: 0.7;
+    transition: opacity 0.3s ease-in;
+}
+
+#photoCred:hover{
+    opacity: 1;
+}
+
+#unlocked,
+#locked{
+    position: fixed;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in;
+    bottom: 2%;
+    right: 1.5%;
+}
+
+#unlocked:hover,
+#locked:hover {
+    opacity: 1;
+}

@@ -1,6 +1,7 @@
 @import "main.css";
-@import "index.css";
+@import "greeting.css";
 @import "center.css";
 @import "clock.css";
 @import "date.css";
 @import "weather.css";
+@import "background.css";

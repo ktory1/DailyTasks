@@ -1,29 +1,35 @@
 const body = document.querySelector("body"),
-    photoCred = document.querySelector("#photoCred");
+    photoCred = document.querySelector("#photoCred"),
+    bgLock = document.querySelector("#locked"),
+    bgUnlock = document.querySelector("#unlocked");
 
 const UNSPLASH_URL = `https://api.unsplash.com/photos/random/?client_id=${config.UNSPLASH_ACCESS_KEY}&query=landscape&orientation=landscape`;
 
 let authorProfile = "";
-// const IMG_COUNT = 8;
-// const authorList = ["Ken Cheung",,,"Jeremy Thomas","Jose Mizrahi",]
-
-// let currentBackground = 0;
+let isBgLocked = localStorage.getItem("isBgLocked");
 
 function getBackgroundImage(){
-    fetch(UNSPLASH_URL).then(function(response){
-        return response.json();
-    }).then(function(json){
-        if (json.urls && json.urls.full && json.user){
-            const imageUrl = json.urls.full;
-            const imageAuthor = json.user;
-            console.log(imageAuthor);
-            authorProfile = imageAuthor.links.html;
-            paintBackground(imageUrl);
-            paintPhotoCred(imageAuthor);
-        }else{
-            getBackgroundImage();
-        }
-    })
+    if(isBgLocked == "true"){
+        paintBackground(localStorage.getItem("currentBackground"));
+        paintPhotoCred(localStorage.getItem("currentAuthor"));
+    } else {
+        fetch(UNSPLASH_URL).then(function(response){
+            return response.json();
+        }).then(function(json){
+            if (json.urls && json.urls.full && json.user){
+                const imageUrl = json.urls.full;
+                const imageAuthor = json.user;
+                authorProfile = imageAuthor.links.html;
+                localStorage.setItem("currentBackground",imageUrl);
+                localStorage.setItem("currentAuthor",imageAuthor.name);
+                currentAuthor = imageAuthor
+                paintBackground(imageUrl);
+                paintPhotoCred(imageAuthor.name);
+            }else{
+                getBackgroundImage();
+            }
+        })
+    }
     return;
 }
 
@@ -33,7 +39,7 @@ function handleClickPhotoCred(event){
 
 
 function paintPhotoCred(imageAuthor){
-    photoCred.innerHTML = `photo by ${imageAuthor.name}`;
+    photoCred.innerHTML = `photo by ${imageAuthor}`;
     photoCred.addEventListener("click", handleClickPhotoCred);
 }
 
@@ -45,12 +51,35 @@ function paintBackground(imageUrl) {
      url('${image.src}')`;
 }
 
-// function genRandomNum(){
-//     return Math.floor(Math.random() * IMG_COUNT);
-// }
+function handleClickBgLock(event){
+    if(isBgLocked === "true"){
+        isBgLocked = false;
+        localStorage.setItem("isBgLocked",isBgLocked);
+        bgLock.classList.add("hidden");
+        bgUnlock.classList.remove("hidden");
+    }else {
+        isBgLocked = true;
+        localStorage.setItem("isBgLocked",isBgLocked);
+        bgUnlock.classList.add("hidden");
+        bgLock.classList.remove("hidden");
+    }
+}
+
+function getBackgroundLock(){
+if(isBgLocked === null){
+        isBgLocked = false;
+        localStorage.setItem("isBgLocked",false);
+    } else if(isBgLocked === "true"){
+        bgUnlock.classList.add("hidden");
+        bgLock.classList.remove("hidden");
+    }
+    
+    bgUnlock.addEventListener("click", handleClickBgLock);
+    bgLock.addEventListener("click", handleClickBgLock);
+}
 
 function init(){
-    // const currentBackground = genRandomNum();
-    getBackgroundImage();
+    getBackgroundLock();
+    getBackgroundImage();   
 }
 init();
