@@ -55,12 +55,12 @@ function paintBackground(imageUrl) {
 
 function handleClickBgLock(event){
     if(isBgLocked === "true"){
-        isBgLocked = false;
+        isBgLocked = "false";
         localStorage.setItem("isBgLocked",isBgLocked);
         bgLock.classList.add("hidden");
         bgUnlock.classList.remove("hidden");
     }else {
-        isBgLocked = true;
+        isBgLocked = "true";
         localStorage.setItem("isBgLocked",isBgLocked);
         bgUnlock.classList.add("hidden");
         bgLock.classList.remove("hidden");
@@ -74,6 +74,9 @@ if(isBgLocked === null){
     } else if(isBgLocked === "true"){
         bgUnlock.classList.add("hidden");
         bgLock.classList.remove("hidden");
+    } else if(isBgLocked === "false"){
+        bgLock.classList.add("hidden");
+        bgUnlock.classList.remove("hidden");
     }
     
     bgUnlock.addEventListener("click", handleClickBgLock);
