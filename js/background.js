@@ -12,6 +12,7 @@ function getBackgroundImage(){
     if(isBgLocked == "true"){
         paintBackground(localStorage.getItem("currentBackground"));
         paintPhotoCred(localStorage.getItem("currentAuthor"));
+        authorProfile = localStorage.getItem("currentAuthorProfile");
     } else {
         fetch(UNSPLASH_URL).then(function(response){
             return response.json();
@@ -22,6 +23,7 @@ function getBackgroundImage(){
                 authorProfile = imageAuthor.links.html;
                 localStorage.setItem("currentBackground",imageUrl);
                 localStorage.setItem("currentAuthor",imageAuthor.name);
+                localStorage.setItem("currentAuthorProfile",authorProfile);
                 currentAuthor = imageAuthor
                 paintBackground(imageUrl);
                 paintPhotoCred(imageAuthor.name);
