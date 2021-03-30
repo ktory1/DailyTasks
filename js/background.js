@@ -3,7 +3,7 @@ const body = document.querySelector("body"),
     bgLock = document.querySelector("#locked"),
     bgUnlock = document.querySelector("#unlocked");
 
-const UNSPLASH_URL = `https://api.unsplash.com/photos/random/?client_id=${config.UNSPLASH_ACCESS_KEY}&query=landscape&orientation=landscape`;
+const UNSPLASH_URL = `https://api.unsplash.com/photos/random/?client_id=${config.UNSPLASH_ACCESS_KEY}&query=nature&orientation=landscape`;
 
 let authorProfile = "";
 let isBgLocked = localStorage.getItem("isBgLocked");

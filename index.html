@@ -15,7 +15,14 @@
     <div class="weather">
       <spanc class="js-weather"></spanc>
     </div>
-
+    <div class="settings" style="cursor:pointer">
+      <img id="settings-button" src="https://img.icons8.com/material/36/ffffff/settings--v5.png" title="Settings"/>
+      <div id="settings-dropdown" class="settings-content hidden">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
     <section class="center">
       <section>
         <div class="js-clock">
@@ -29,9 +36,9 @@
         
         <div class="name">
           <form class="js-greetingsForm form hidden">
-            <input class="name_input" type="text" placeholder="Please enter your name :)"/>
+            <input class="name_input" type="text" placeholder="Hi, what should I call you?"/>
           </form>
-          <h2 class="js-greetings greetings hidden"></h2>
+          <h2 class="js-greetings greetings hidden"></h2> 
         </div>
       </section>
       
@@ -51,6 +58,7 @@
     <script src="js/config.js"></script>
     <script src="js/background.js"></script>
     <script src="js/weather.js"></script>
+    <script src="js/settings.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/greeting.js"></script>
     <script src="js/todo.js"></script>

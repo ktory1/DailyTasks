@@ -70,3 +70,18 @@ ul {
 .showing {
     display: block;
 }
+
+.settings{
+    position: fixed;
+    top: 2%;
+    left: 1.5%;
+}
+
+#settings-button{
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in;
+}
+
+#settings-button:hover {
+    opacity: 1;
+}
