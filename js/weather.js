@@ -1,10 +1,12 @@
 
 const weather = document.querySelector(".js-weather"),
-    weatherImg = document.querySelector(".weather-img");
+    weatherImg = document.querySelector(".weather-img"),
+    locationText = document.querySelector(".location");
 
 const COORDS = 'coords';
 let METRIC_UNITS = true;
-let currentWeather = null;
+let currentWeatherId = null;
+let currentWeatherText = "";
 
 function toggleUnits(){
     METRIC_UNITS = !METRIC_UNITS;
@@ -23,13 +25,20 @@ function getCurrentWeather(locationKey){
         return response.json();
     })
     .then(function(json) {
-        localStorage.setItem("currentWeather", json[0].WeatherIcon)
-        return METRIC_UNITS ? json[0].Temperature.Metric.Value : json.Temperature.Imperial.Value;
+        currentWeatherId = json[0].WeatherIcon;
+        currentWeatherText = json[0].WeatherText;
+        paintWeatherImg();
+        return METRIC_UNITS ? json[0].Temperature.Metric.Value : json[0].Temperature.Imperial.Value;
     });
 }
 
 function saveCoords(coordsObj){
     localStorage.setItem(COORDS, JSON.stringify(coordsObj));
+}
+
+function paintWeatherImg() {
+    weatherImg.src = `./img/w${currentWeatherId}.png`;
+    weatherImg.title = currentWeatherText;
 }
 
 function paintWeather(lat, lon){
@@ -38,7 +47,8 @@ function paintWeather(lat, lon){
         location = locationInfo.LocalizedName;
         return getCurrentWeather(locationInfo.Key);
     }).then(function (weatherInfo) {
-        weather.innerText = `${weatherInfo} @ ${location}`
+        weather.innerText = `${weatherInfo}`;
+        locationText.innerText = `@ ${location}`;
     });
 }
 
