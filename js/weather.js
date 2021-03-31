@@ -47,7 +47,7 @@ function paintWeather(lat, lon){
         location = locationInfo.LocalizedName;
         return getCurrentWeather(locationInfo.Key);
     }).then(function (weatherInfo) {
-        weather.innerText = `${weatherInfo}`;
+        weather.innerText = `${weatherInfo}${String.fromCharCode(176)}`;
         locationText.innerText = `@ ${location}`;
     });
 }
