@@ -1,8 +1,10 @@
 
-const weather = document.querySelector(".js-weather");
+const weather = document.querySelector(".js-weather"),
+    weatherImg = document.querySelector(".weather-img");
 
 const COORDS = 'coords';
 let METRIC_UNITS = true;
+let currentWeather = null;
 
 function toggleUnits(){
     METRIC_UNITS = !METRIC_UNITS;
@@ -21,6 +23,7 @@ function getCurrentWeather(locationKey){
         return response.json();
     })
     .then(function(json) {
+        localStorage.setItem("currentWeather", json[0].WeatherIcon)
         return METRIC_UNITS ? json[0].Temperature.Metric.Value : json.Temperature.Imperial.Value;
     });
 }
