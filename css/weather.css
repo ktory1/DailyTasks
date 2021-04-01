@@ -1,8 +1,16 @@
 .weather {
-    font-style: italic;
-    font-size: 12px;
+    font-size: .7em;
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 1.5em;
+    right: 2em;
 }
   
+.temperature{
+    font-size: 2em;
+    vertical-align: 50%;
+    font-style: italic;
+}
+
+.location{
+    text-align: end;
+}
