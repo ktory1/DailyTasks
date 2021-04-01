@@ -3,31 +3,51 @@ const body = document.querySelector("body"),
     bgLock = document.querySelector("#locked"),
     bgUnlock = document.querySelector("#unlocked");
 
-const UNSPLASH_URL = `https://api.unsplash.com/photos/random/?client_id=${config.UNSPLASH_ACCESS_KEY}&query=nature&orientation=landscape`;
 
 let authorProfile = "";
 let isBgLocked = localStorage.getItem("isBgLocked");
+let theme = getTheme();
 
-function getBackgroundImage(){
-    if(isBgLocked == "true"){
+const UNSPLASH_URL = `https://api.unsplash.com/photos/random/?client_id=${config.UNSPLASH_ACCESS_KEY}&query=${theme}&orientation=landscape`;
+
+function getTheme() {
+    const time = new Date().getHours();
+    switch (true) {
+        case time < 6:
+            return "night-sky";
+        case time < 10:
+            return "bright-morning";
+        case time < 14:
+            return "shiny-afternoon";
+        case time < 18:
+            return "fresh-scenery";
+        case time <= 23:
+            return "zen-nature";
+        default:
+            return "nature";
+    }
+}
+
+function getBackgroundImage() {
+    if (isBgLocked == "true") {
         paintBackground(localStorage.getItem("currentBackground"));
         paintPhotoCred(localStorage.getItem("currentAuthor"));
         authorProfile = localStorage.getItem("currentAuthorProfile");
     } else {
-        fetch(UNSPLASH_URL).then(function(response){
+        fetch(UNSPLASH_URL).then(function (response) {
             return response.json();
-        }).then(function(json){
-            if (json.urls && json.urls.full && json.user){
+        }).then(function (json) {
+            if (json.urls && json.urls.full && json.user) {
                 const imageUrl = json.urls.full;
                 const imageAuthor = json.user;
                 authorProfile = imageAuthor.links.html;
-                localStorage.setItem("currentBackground",imageUrl);
-                localStorage.setItem("currentAuthor",imageAuthor.name);
-                localStorage.setItem("currentAuthorProfile",authorProfile);
+                localStorage.setItem("currentBackground", imageUrl);
+                localStorage.setItem("currentAuthor", imageAuthor.name);
+                localStorage.setItem("currentAuthorProfile", authorProfile);
                 currentAuthor = imageAuthor
                 paintBackground(imageUrl);
                 paintPhotoCred(imageAuthor.name);
-            }else{
+            } else {
                 getBackgroundImage();
             }
         })
@@ -35,12 +55,12 @@ function getBackgroundImage(){
     return;
 }
 
-function handleClickPhotoCred(event){
+function handleClickPhotoCred(event) {
     window.open(authorProfile);
 }
 
 
-function paintPhotoCred(imageAuthor){
+function paintPhotoCred(imageAuthor) {
     photoCred.innerHTML = `photo by ${imageAuthor}`;
     photoCred.addEventListener("click", handleClickPhotoCred);
 }
@@ -53,38 +73,38 @@ function paintBackground(imageUrl) {
      url('${image.src}')`;
 }
 
-function handleClickBgLock(event){
-    if(isBgLocked === "true"){
+function handleClickBgLock(event) {
+    if (isBgLocked === "true") {
         isBgLocked = "false";
-        localStorage.setItem("isBgLocked",isBgLocked);
+        localStorage.setItem("isBgLocked", isBgLocked);
         bgLock.classList.add("hidden");
         bgUnlock.classList.remove("hidden");
-    }else {
+    } else {
         isBgLocked = "true";
-        localStorage.setItem("isBgLocked",isBgLocked);
+        localStorage.setItem("isBgLocked", isBgLocked);
         bgUnlock.classList.add("hidden");
         bgLock.classList.remove("hidden");
     }
 }
 
-function getBackgroundLock(){
-if(isBgLocked === null){
+function getBackgroundLock() {
+    if (isBgLocked === null) {
         isBgLocked = false;
-        localStorage.setItem("isBgLocked",false);
-    } else if(isBgLocked === "true"){
+        localStorage.setItem("isBgLocked", false);
+    } else if (isBgLocked === "true") {
         bgUnlock.classList.add("hidden");
         bgLock.classList.remove("hidden");
-    } else if(isBgLocked === "false"){
+    } else if (isBgLocked === "false") {
         bgLock.classList.add("hidden");
         bgUnlock.classList.remove("hidden");
     }
-    
+
     bgUnlock.addEventListener("click", handleClickBgLock);
     bgLock.addEventListener("click", handleClickBgLock);
 }
 
-function init(){
+function init() {
     getBackgroundLock();
-    getBackgroundImage();   
+    getBackgroundImage();
 }
 init();
