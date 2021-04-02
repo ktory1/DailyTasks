@@ -21,7 +21,6 @@ body{
     animation-delay: 0.5s;
     display: flex;
     text-align: center;
-    align-items: center;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
 }
