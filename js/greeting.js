@@ -45,7 +45,7 @@ function paintGreeting(text){
             break;
     }
 
-    greeting.innerText = `${greetingText}, ${text}`;
+    greeting.innerText = `${greetingText}, ${text}.`;
 }
 
 function loadName() {
@@ -59,6 +59,7 @@ function loadName() {
 
 function init() {
     loadName();
+    setInterval(loadName, 600000)
 }
 
 init();

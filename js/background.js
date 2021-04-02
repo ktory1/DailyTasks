@@ -1,9 +1,6 @@
 const body = document.querySelector("body"),
     photoCred = document.querySelector("#photoCred"),
     bgShuffle = document.querySelector('#shuffle');
-    // bgLock = document.querySelector("#locked"),
-    // bgUnlock = document.querySelector("#unlocked");
-
 
 let authorProfile = "";
 let isBgLocked = localStorage.getItem("isBgLocked");
@@ -73,36 +70,6 @@ function paintBackground(imageUrl) {
     body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)),
      url('${image.src}')`;
 }
-
-// function handleClickBgLock(event) {
-//     if (isBgLocked === "true") {
-//         isBgLocked = "false";
-//         localStorage.setItem("isBgLocked", isBgLocked);
-//         bgLock.classList.add("hidden");
-//         bgUnlock.classList.remove("hidden");
-//     } else {
-//         isBgLocked = "true";
-//         localStorage.setItem("isBgLocked", isBgLocked);
-//         bgUnlock.classList.add("hidden");
-//         bgLock.classList.remove("hidden");
-//     }
-// }
-
-// function getBackgroundLock() {
-//     if (isBgLocked === null) {
-//         isBgLocked = false;
-//         localStorage.setItem("isBgLocked", false);
-//     } else if (isBgLocked === "true") {
-//         bgUnlock.classList.add("hidden");
-//         bgLock.classList.remove("hidden");
-//     } else if (isBgLocked === "false") {
-//         bgLock.classList.add("hidden");
-//         bgUnlock.classList.remove("hidden");
-//     }
-
-//     bgUnlock.addEventListener("click", handleClickBgLock);
-//     bgLock.addEventListener("click", handleClickBgLock);
-// }
 
 function handleClickBgShuffle(event){
     localStorage.setItem("currentBackground", "");
