@@ -1,7 +1,8 @@
 
 const weather = document.querySelector(".js-weather"),
     weatherImg = document.querySelector(".weather-img"),
-    locationText = document.querySelector(".location");
+    locationText = document.querySelector(".location"),
+    weatherBox = document.querySelector(".weather");
 
 const COORDS = 'coords';
 let METRIC_UNITS = true;
@@ -45,12 +46,21 @@ function paintWeather(lat, lon){
     let location = "";
     getLocationInfo(lat, lon).then(function(locationInfo){
         location = locationInfo.LocalizedName;
+        localStorage.setItem("locationName", location);
+        localStorage.setItem("locationId", locationInfo.Key);
         return getCurrentWeather(locationInfo.Key);
     }).then(function (weatherInfo) {
         const unit = METRIC_UNITS ? "C" : "F";
         weather.innerText = `${weatherInfo}${String.fromCharCode(176)}${unit}`;
         locationText.innerText = `@ ${location}`;
+        weatherBox.addEventListener("click", handleClickWeather)
     });
+}
+
+function handleClickWeather(event){
+    const locationName = localStorage.getItem("locationName");
+    const locationId = localStorage.getItem("locationId");
+    window.open(`https://www.accuweather.com/en/ca/${locationName}/v6r/current-weather/${locationId}`);
 }
 
 function handleGeoSuccess(position){
