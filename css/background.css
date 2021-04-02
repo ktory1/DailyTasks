@@ -22,7 +22,20 @@
     opacity: 1;
 }
 
-#unlocked,
+#shuffle{
+    position: fixed;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in, transform 0.8s ease-in-out;
+    bottom: 2%;
+    right: 1.5%;
+}
+
+#shuffle:hover {
+    opacity: 1;
+    transform: rotate(180deg);
+}
+
+/* #unlocked,
 #locked{
     position: fixed;
     opacity: 0.5;
@@ -34,4 +47,4 @@
 #unlocked:hover,
 #locked:hover {
     opacity: 1;
-}
+} */

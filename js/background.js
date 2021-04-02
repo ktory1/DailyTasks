@@ -1,7 +1,8 @@
 const body = document.querySelector("body"),
     photoCred = document.querySelector("#photoCred"),
-    bgLock = document.querySelector("#locked"),
-    bgUnlock = document.querySelector("#unlocked");
+    bgShuffle = document.querySelector('#shuffle');
+    // bgLock = document.querySelector("#locked"),
+    // bgUnlock = document.querySelector("#unlocked");
 
 
 let authorProfile = "";
@@ -29,7 +30,7 @@ function getTheme() {
 }
 
 function getBackgroundImage() {
-    if (isBgLocked == "true") {
+    if (localStorage.getItem("currentBackground") != "") {
         paintBackground(localStorage.getItem("currentBackground"));
         paintPhotoCred(localStorage.getItem("currentAuthor"));
         authorProfile = localStorage.getItem("currentAuthorProfile");
@@ -73,38 +74,47 @@ function paintBackground(imageUrl) {
      url('${image.src}')`;
 }
 
-function handleClickBgLock(event) {
-    if (isBgLocked === "true") {
-        isBgLocked = "false";
-        localStorage.setItem("isBgLocked", isBgLocked);
-        bgLock.classList.add("hidden");
-        bgUnlock.classList.remove("hidden");
-    } else {
-        isBgLocked = "true";
-        localStorage.setItem("isBgLocked", isBgLocked);
-        bgUnlock.classList.add("hidden");
-        bgLock.classList.remove("hidden");
-    }
+// function handleClickBgLock(event) {
+//     if (isBgLocked === "true") {
+//         isBgLocked = "false";
+//         localStorage.setItem("isBgLocked", isBgLocked);
+//         bgLock.classList.add("hidden");
+//         bgUnlock.classList.remove("hidden");
+//     } else {
+//         isBgLocked = "true";
+//         localStorage.setItem("isBgLocked", isBgLocked);
+//         bgUnlock.classList.add("hidden");
+//         bgLock.classList.remove("hidden");
+//     }
+// }
+
+// function getBackgroundLock() {
+//     if (isBgLocked === null) {
+//         isBgLocked = false;
+//         localStorage.setItem("isBgLocked", false);
+//     } else if (isBgLocked === "true") {
+//         bgUnlock.classList.add("hidden");
+//         bgLock.classList.remove("hidden");
+//     } else if (isBgLocked === "false") {
+//         bgLock.classList.add("hidden");
+//         bgUnlock.classList.remove("hidden");
+//     }
+
+//     bgUnlock.addEventListener("click", handleClickBgLock);
+//     bgLock.addEventListener("click", handleClickBgLock);
+// }
+
+function handleClickBgShuffle(event){
+    localStorage.setItem("currentBackground", "");
+    getBackgroundImage();
 }
 
-function getBackgroundLock() {
-    if (isBgLocked === null) {
-        isBgLocked = false;
-        localStorage.setItem("isBgLocked", false);
-    } else if (isBgLocked === "true") {
-        bgUnlock.classList.add("hidden");
-        bgLock.classList.remove("hidden");
-    } else if (isBgLocked === "false") {
-        bgLock.classList.add("hidden");
-        bgUnlock.classList.remove("hidden");
-    }
-
-    bgUnlock.addEventListener("click", handleClickBgLock);
-    bgLock.addEventListener("click", handleClickBgLock);
+function getBackgroundShuffle(){
+    bgShuffle.addEventListener("click", handleClickBgShuffle)
 }
 
 function init() {
-    getBackgroundLock();
+    getBackgroundShuffle();
     getBackgroundImage();
 }
 init();
