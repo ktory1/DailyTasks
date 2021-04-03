@@ -34,7 +34,7 @@
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .todo-checkbox{
