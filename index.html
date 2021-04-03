@@ -17,12 +17,40 @@
       <span class="js-weather temperature" title="Click for detailed report"></span>
       <h4 class="location"></h4>
     </div>
-    <div class="settings" style="cursor:pointer">
-      <img id="settings-button" src="https://img.icons8.com/material/36/ffffff/settings--v5.png" title="Settings"/>
+    <div class="settings" >
+      <img id="settings-button" src="https://img.icons8.com/material/36/ffffff/settings--v5.png" title="Settings" style="cursor:pointer"/>
       <div id="settings-dropdown" class="settings-content hidden">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <div id="clock-setting">
+          <h4>Clock</h4>
+          <div class="settings-choice">
+            <span class="twntyfrhr-choice">
+              <input type="radio" id="24hour-clock" value="24hour">
+              <label for="24hour-clock">24-hr</label>
+            </span>
+            <span class="twelvehr-choice">
+              <input type="radio" id="12hour-clock" value="12hour">
+              <label for="12hour-clock">12-hr</label>
+            </span>
+          </div>
+        </div>
+        <div id="weather-setting">
+          <h4>Weather</h4>
+          <div class="settings-choice">
+            <span class="imperial-choice">
+              <input type="radio" id="imperial" value="imperial-unit">
+              <label for="imperial">&#176;F</label>
+            </span>
+            <span class="metric-choice">
+              <input type="radio" id="metric" value="metric-unit">
+              <label for="metric">&#176;C</label>
+            </span>
+          </div>
+        </div>
+        <div class="edit-name">
+          <span id="name-setting">
+            <h4 class="edit-name-choice">Edit Name  <img class="edit-name-icon" src="https://img.icons8.com/windows/18/000000/edit--v1.png"/></h4>
+          </span>
+        </div>
       </div>
     </div>
     <section class="center">

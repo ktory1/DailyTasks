@@ -1,10 +1,14 @@
 const body = document.querySelector("body"),
     photoCred = document.querySelector("#photoCred"),
-    bgShuffle = document.querySelector('#shuffle');
+    bgShuffle = document.querySelector('#shuffle'),
+    bgDownload = document.querySelector("#download");
 
 let authorProfile = "";
 let isBgLocked = localStorage.getItem("isBgLocked");
 let theme = getTheme();
+const CURRENT_BG_LS = "currentBackground";
+const CURRENT_AUTH_LS = "currentAuthor";
+const CURRENT_AUTH_PROF_LS = "currentAuthorProfile";
 
 const UNSPLASH_URL = `https://api.unsplash.com/photos/random/?client_id=${config.UNSPLASH_ACCESS_KEY}&query=${theme}&orientation=landscape`;
 
@@ -27,10 +31,10 @@ function getTheme() {
 }
 
 function getBackgroundImage() {
-    if (localStorage.getItem("currentBackground") != "" && localStorage.getItem("currentBackground") != null ) {
-        paintBackground(localStorage.getItem("currentBackground"));
-        paintPhotoCred(localStorage.getItem("currentAuthor"));
-        authorProfile = localStorage.getItem("currentAuthorProfile");
+    if (localStorage.getItem(CURRENT_BG_LS) != "" && localStorage.getItem(CURRENT_BG_LS) != null ) {
+        paintBackground(localStorage.getItem(CURRENT_BG_LS));
+        paintPhotoCred(localStorage.getItem(CURRENT_AUTH_LS));
+        authorProfile = localStorage.getItem(CURRENT_AUTH_PROF_LS);
     } else {
         fetch(UNSPLASH_URL).then(function (response) {
             return response.json();
@@ -39,10 +43,12 @@ function getBackgroundImage() {
                 const imageUrl = json.urls.full;
                 const imageAuthor = json.user;
                 authorProfile = imageAuthor.links.html;
-                localStorage.setItem("currentBackground", imageUrl);
-                localStorage.setItem("currentAuthor", imageAuthor.name);
-                localStorage.setItem("currentAuthorProfile", authorProfile);
-                currentAuthor = imageAuthor
+                localStorage.setItem(CURRENT_BG_LS, imageUrl);
+                localStorage.setItem(CURRENT_AUTH_LS, imageAuthor.name);
+                localStorage.setItem(CURRENT_AUTH_PROF_LS, authorProfile);
+
+                console.log(json.links);
+                currentAuthor = imageAuthor;
                 paintBackground(imageUrl);
                 paintPhotoCred(imageAuthor.name);
             } else {
@@ -72,13 +78,14 @@ function paintBackground(imageUrl) {
 }
 
 function handleClickBgShuffle(event){
-    localStorage.setItem("currentBackground", "");
+    localStorage.setItem(CURRENT_BG_LS, "");
     getBackgroundImage();
 }
 
 function getBackgroundShuffle(){
     bgShuffle.addEventListener("click", handleClickBgShuffle)
 }
+
 
 function init() {
     getBackgroundShuffle();

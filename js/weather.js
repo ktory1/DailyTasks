@@ -5,6 +5,9 @@ const weather = document.querySelector(".js-weather"),
     weatherBox = document.querySelector(".weather");
 
 const COORDS = 'coords';
+const LOCATION_LS = "locationName";
+const LOCATION_ID_LS = "locationId";
+const GEO_ERROR_TEXT = "Unable to access location";
 let METRIC_UNITS = true;
 let currentWeatherId = null;
 let currentWeatherText = "";
@@ -46,8 +49,8 @@ function paintWeather(lat, lon){
     let location = "";
     getLocationInfo(lat, lon).then(function(locationInfo){
         location = locationInfo.LocalizedName;
-        localStorage.setItem("locationName", location);
-        localStorage.setItem("locationId", locationInfo.Key);
+        localStorage.setItem(LOCATION_LS, location);
+        localStorage.setItem(LOCATION_ID_LS, locationInfo.Key);
         return getCurrentWeather(locationInfo.Key);
     }).then(function (weatherInfo) {
         const unit = METRIC_UNITS ? "C" : "F";
@@ -58,8 +61,8 @@ function paintWeather(lat, lon){
 }
 
 function handleClickWeather(event){
-    const locationName = localStorage.getItem("locationName");
-    const locationId = localStorage.getItem("locationId");
+    const locationName = localStorage.getItem(LOCATION_LS);
+    const locationId = localStorage.getItem(LOCATION_ID_LS);
     window.open(`https://www.accuweather.com/en/ca/${locationName}/v6r/current-weather/${locationId}`);
 }
 
@@ -74,7 +77,7 @@ function handleGeoSuccess(position){
     paintWeather(latitude, longitude);
 }
 function handleGeoError(){
-    weather.innerText = "Unable to access location";
+    weather.innerText = GEO_ERROR_TEXT;
     console.log("Can't access geolocation");
 }
 
@@ -92,8 +95,8 @@ function loadCoords(){
     }
 }
 
-function init() {
+function weatherInit() {
     loadCoords();
     setInterval(loadCoords, 3600000)
 }
-init();
+weatherInit();

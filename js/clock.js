@@ -22,17 +22,21 @@ function getTime() {
     const month = monthNames[date.getMonth()];
     const day = date.getDate();
     const dow = daysOfTheWeek[date.getDay()];
-
-    clockTime.innerText = `${hours < 10 ? `0${hours}` : hours}:${
-        minutes < 10 ? `0${minutes}` : minutes}:${
-        seconds < 10 ? `0${seconds}` : seconds}`;
-        // ${timeOfDay[Math.floor(rawHours/12)]}
+    if (localStorage.getItem("clockType") === null || localStorage.getItem("clockType") === "twelvehrClock"){
+        clockTime.innerText = `${hours < 10 ? `0${hours}` : hours}:${
+            minutes < 10 ? `0${minutes}` : minutes}:${
+            seconds < 10 ? `0${seconds}` : seconds}`;
+    } else {
+        clockTime.innerText = `${rawHours < 10 ? `0${rawHours}` : rawHours}:${
+            minutes < 10 ? `0${minutes}` : minutes}:${
+            seconds < 10 ? `0${seconds}` : seconds}`;
+    }
     clockDate.innerText = `${dow}, ${month} ${day}, ${year}`;
 }
 
-function init() {
+function clockInit() {
     getTime();
     setInterval(getTime, 1000);
 }
 
-init();
+clockInit();

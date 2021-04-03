@@ -12,9 +12,11 @@ function saveName(text){
 
 function handleSubmitName(event){
     event.preventDefault();
+    console.dir(event);
     const currentValue = nameInput.value;
     saveName(currentValue);
     paintGreeting(currentValue);
+    event.srcElement.elements[0].value = "";
 }
 
 function askForName() {
@@ -57,9 +59,9 @@ function loadName() {
     }
 }
 
-function init() {
+function greetInit() {
     loadName();
     setInterval(loadName, 600000)
 }
 
-init();
+greetInit();
