@@ -25,12 +25,10 @@ function getTime() {
     const dow = daysOfTheWeek[date.getDay()];
     if (localStorage.getItem("clockType") === null || localStorage.getItem("clockType") === "twelvehrClock"){
         clockTime.innerText = `${hours < 10 ? `0${hours}` : hours}:${
-            minutes < 10 ? `0${minutes}` : minutes}:${
-            seconds < 10 ? `0${seconds}` : seconds}`;
+            minutes < 10 ? `0${minutes}` : minutes}`;
     } else {
         clockTime.innerText = `${rawHours < 10 ? `0${rawHours}` : rawHours}:${
-            minutes < 10 ? `0${minutes}` : minutes}:${
-            seconds < 10 ? `0${seconds}` : seconds}`;
+            minutes < 10 ? `0${minutes}` : minutes}`;
     }
     clockDate.innerText = `${dow}, ${month} ${day}, ${year}`;
 }
