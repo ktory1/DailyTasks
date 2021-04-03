@@ -2,7 +2,7 @@
     display: flex;
     margin-top: 10%;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
 }
 
 .name_input {
@@ -22,7 +22,7 @@
 }
 
 .center .greetings {
-    font-size: 4em;
+    font-size: 3.5em;
     margin-bottom: 20px;
 }
   
