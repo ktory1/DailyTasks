@@ -15,7 +15,8 @@ function getTime() {
     const date = new Date();
     const minutes = date.getMinutes();
     const rawHours = date.getHours();
-    const hours = rawHours>12 ? rawHours - 12 : rawHours;
+    let hours = rawHours>12 ? rawHours - 12 : rawHours;
+    hours = hours === 0 ? 12 : hours
     const seconds = date.getSeconds();
     
     const year = date.getFullYear();
