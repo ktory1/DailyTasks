@@ -94,6 +94,6 @@ function loadCoords(){
 
 function init() {
     loadCoords();
-    setInterval(loadCoords, 18000000)
+    setInterval(loadCoords, 3600000)
 }
 init();

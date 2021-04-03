@@ -23,14 +23,6 @@ function saveToDos() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
-function handleMouseEnterDeleteTodo(event){
-    event.srcElement.setAttribute('src', "https://img.icons8.com/metro/26/ff4d4d/delete-sign.png");
-}
-
-function handleMouseLeaveDeleteTodo(event){
-    event.srcElement.setAttribute('src', "https://img.icons8.com/metro/26/ffffff/delete-sign.png");
-}
-
 function checkTodo(event){
     event.srcElement.classList.toggle("unchecked");
     console.log(event)
@@ -64,15 +56,16 @@ function paintToDo(text){
     delBtn.src = "https://img.icons8.com/metro/26/ffffff/delete-sign.png";
     delBtn.classList.add("remove-todo");
     delBtn.addEventListener("click", deleteTodo);
-    delBtn.addEventListener("mouseenter", handleMouseEnterDeleteTodo)
-    delBtn.addEventListener("mouseleave", handleMouseLeaveDeleteTodo)
     delBtn.setAttribute("title","Remove this task");
 
     span.innerText = text;
+    span.setAttribute("title",text);
+    span.classList.add("todo-info");
 
     li.id = newId;
     toDoList.appendChild(li);
-    taskDiv.classList.add("todo-item")
+    taskDiv.classList.add("todo-item");
+    li.classList.add("todo-listitem");
     
     const toDoObj = {
         text: text,

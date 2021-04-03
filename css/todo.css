@@ -12,7 +12,8 @@
 }
 
 .toDoList{
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: inline-block;
     width: 100%;
     height:25vh;
@@ -20,29 +21,46 @@
 
 .todo-item{
     font-size: 2em;
-    /* align-items: center; */
+    align-items: center;
+    width: 100%;
 }
 
 .done-todo{
     text-decoration: line-through;
 }
 
+.todo-info{
+    text-align: center;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    opacity: 0.8;
+}
+
 .todo-checkbox{
     width: .8em;
     height: .8em;
-    position: relative;
     float: left;
     cursor: pointer;
-    margin-left: 20%;
     margin-top: .7%;
-    /* margin-bottom: 1%; */
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in;
+}
+
+.todo-checkbox:hover{
+    opacity: 0.8;
 }
 
 .remove-todo{
     width: .8em;
     height: .8em;
     float: right;
-    margin-right: 20%;
     cursor: pointer;
     margin-top: .7%;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in;
+}
+
+.remove-todo:hover{
+    opacity: 0.8;
 }

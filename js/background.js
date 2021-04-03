@@ -27,7 +27,7 @@ function getTheme() {
 }
 
 function getBackgroundImage() {
-    if (localStorage.getItem("currentBackground") != "") {
+    if (localStorage.getItem("currentBackground") != "" && localStorage.getItem("currentBackground") != null ) {
         paintBackground(localStorage.getItem("currentBackground"));
         paintPhotoCred(localStorage.getItem("currentAuthor"));
         authorProfile = localStorage.getItem("currentAuthorProfile");
