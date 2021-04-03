@@ -21,7 +21,7 @@ function getLocationInfo(lat, lon){
 }
 
 function getCurrentWeather(locationKey){
-    return fetch(`http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${config.WEATHER_API_KEY}`
+    return fetch(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${config.WEATHER_API_KEY}`
     ).then(function(response) {
         return response.json();
     })
