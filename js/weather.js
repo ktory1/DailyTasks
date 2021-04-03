@@ -14,7 +14,7 @@ function toggleUnits(){
 }
 
 function getLocationInfo(lat, lon){
-    return fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${config.WEATHER_API_KEY}&q=${lat}%2C${lon}`
+    return fetch(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${config.WEATHER_API_KEY}&q=${lat}%2C${lon}`
     ).then(function(response){
         return response.json();
     })
