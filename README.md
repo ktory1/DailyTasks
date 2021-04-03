@@ -10,3 +10,4 @@ A web tool inspired by [Momentum](https://chrome.google.com/webstore/detail/mome
 
 
 # Try it out!
+https://ktory1.github.io/DailyTasks/
